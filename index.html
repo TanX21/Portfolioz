@@ -1,11 +1,12 @@
 <?php include("contactform.php"); ?>
+<?php include("action.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Website</title>
+    <title>Tanmay Portfolio</title>
     <link rel="stylesheet" href="style.css">
      <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -25,6 +26,10 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/stylex.css" rel="stylesheet">
+  <!-- Google reCAPTCHA CDN -->
+  <script src= 
+  "https://www.google.com/recaptcha/api.js" async defer> 
+</script> 
 </head>
 <body>
 
@@ -346,13 +351,20 @@
           </div>
           <div class="form-group mt-3">
             <textarea class="form-control" name="Message" rows="5" placeholder="Message" required></textarea>
+           
           </div>
+          
           <div class="my-3">
             <div class="loading">Loading</div>
             <div class="error-message"></div>
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
-          <div class="text-center"><button type="submit" name="submit">Send Message</button></div>
+          <div class="text-center"> <br> 
+            <!-- div to show reCAPTCHA -->
+               <div class="g-recaptcha" 
+                   data-sitekey="6LccZ4opAAAAAMlgGUNKkPdOag4LGJvH0170VUx1"> 
+               </div> 
+               <br> <button type="submit" name="submit">Send Message</button></div>
         </form>
 
       </div>
@@ -407,3 +419,18 @@
 
 </body>
 </html>
+
+
+<?php 
+    
+// Checking valid form is submit or not 
+if (isset($_POST['submit_btn'])) { 
+    
+    // Storing name in $name variable 
+    $name = $_POST['name']; 
+    
+    // Storing google recaptcha response 
+    // in $recaptcha variable 
+    $recaptcha = $_POST['g-recaptcha-response']; 
+} 
+?>
